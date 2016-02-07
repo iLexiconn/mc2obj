@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.lwjgl.lwjgl:lwjgl_util:2.9.3'
+    compile 'commons-io:commons-io:2.4'
+    compile 'com.google.code.gson:gson:2.5'
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    with jar
+    manifest {
+        attributes 'Implementation-Title': 'mc2obj'
+        attributes 'Main-Class': 'net.ilexiconn.mc2obj.Main'
+    }
+}

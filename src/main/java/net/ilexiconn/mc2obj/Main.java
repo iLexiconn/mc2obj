@@ -1,5 +1,7 @@
 package net.ilexiconn.mc2obj;
 
+import net.ilexiconn.mc2obj.options.RunOptions;
+import com.beust.jcommander.JCommander;
 import java.io.BufferedWriter;
 import org.apache.commons.io.FilenameUtils;
 
@@ -11,20 +13,22 @@ import java.util.Arrays;
 import java.util.List;
 import net.ilexiconn.mc2obj.model.IModel;
 import net.ilexiconn.mc2obj.obj.ObjModel;
-import org.lwjgl.util.vector.Vector3f;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		Vector3f offset = parseCenter(args);
-		System.out.println("Offset: " + String.valueOf(offset));
+		RunOptions options = new RunOptions();
+		new JCommander(options, args);
+		options.convert();
 		List<File> files = Arrays.asList(new File(".").listFiles());
 		files.stream()
 				.filter(File::isFile)
 				.map(Main::loadModel)
 				.filter(Main::notNull)
 				.map(Converter::convert)
-				.peek(m -> m.translate(offset))
+				.peek(m -> m.translate(options.translate))
+				.peek(m -> m.scaleTexture(options.stretch))
+				.peek(m -> m.translateTexture(options.offset))
 				.forEach(Main::saveObjModel);
 	}
 
@@ -46,22 +50,6 @@ public class Main {
 		} catch (IOException e) {
 			System.out.printf("Unable to save OBJ file: \"%1$s\"!%n", objFile.getName());
 		}
-	}
-
-	private static Vector3f parseCenter(String... args) {
-		Vector3f vector = new Vector3f();
-		if (args.length > 3 && args[0].equalsIgnoreCase("-offset")) {
-			float[] coords = new float[3];
-			try {
-				for (int i = 0; i < coords.length; i++) {
-					coords[i] = Float.valueOf(args[i + 1]);
-				}
-				vector = new Vector3f(coords[0], coords[1], coords[2]);
-			} catch (NumberFormatException e) {
-				System.err.println("Bad offset specification!");
-			}
-		}
-		return vector;
 	}
 	
 	public static boolean notNull(Object obj) {

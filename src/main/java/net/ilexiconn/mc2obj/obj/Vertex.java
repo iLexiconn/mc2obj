@@ -13,6 +13,18 @@ public class Vertex extends Vector3f {
 	public Vertex(Vector3f src) {
 		super(src);
 	}
+	
+	public void multiply(float x, float y, float z) {
+		this.x *= x;
+		this.y *= y;
+		this.z *= z;
+	}
+	
+	public void multiply(Vector3f vector) {
+		this.x *= vector.x;
+		this.y *= vector.y;
+		this.z *= vector.z;
+	}
 
 	void register(ObjModel model) {
 		this.index = model.nextVertexIndex++;

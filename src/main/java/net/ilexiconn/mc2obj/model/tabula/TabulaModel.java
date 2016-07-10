@@ -2,13 +2,11 @@ package net.ilexiconn.mc2obj.model.tabula;
 
 import com.google.gson.Gson;
 import net.ilexiconn.mc2obj.model.IModel;
-import net.ilexiconn.mc2obj.model.IModelBox;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;

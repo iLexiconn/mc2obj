@@ -10,8 +10,8 @@ public enum ModelTypes {
 	TABULA("tbl", TabulaModel.class),
 	TECHNE("tcn", TechneModel.class);
 
-	private String extension;
-	private Class<? extends IModel> type;
+	private final String extension;
+	private final Class<? extends IModel> type;
 
 	ModelTypes(String extension, Class<? extends IModel> type) {
 		this.extension = extension;

@@ -7,13 +7,16 @@ import org.lwjgl.util.vector.Vector3f;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import org.lwjgl.util.vector.Vector2f;
 
 public class Shape {
+
 	public String name;
 	public ObjModel model;
-	private List<Vertex> vertices = new ArrayList<>();
-	private List<TextureCoords> texCoords = new ArrayList<>();
-	public List<Face> faces = new ArrayList<>();
+	public final List<Face> faces = new ArrayList<>();
+
+	private final List<Vertex> vertices = new ArrayList<>();
+	private final List<TextureCoords> texCoords = new ArrayList<>();
 
 	public Shape(ObjModel parent, String name) {
 		this.model = parent;
@@ -60,17 +63,19 @@ public class Shape {
 	}
 
 	public void translate(Vector3f translationVector) {
-		for (Vertex vertex : this.vertices) {
-			Vector3f.add(vertex, translationVector, vertex);
-		}
+		this.vertices.forEach(v -> Vector3f.add(v, translationVector, v));
 	}
 
 	public void scale(Vector3f scaleVector) {
-		for (Vertex vertex : this.vertices) {
-			vertex.x *= scaleVector.x;
-			vertex.y *= scaleVector.y;
-			vertex.z *= scaleVector.z;
-		}
+		this.vertices.forEach(v -> v.multiply(scaleVector));
+	}
+
+	public void translateTexture(Vector2f translationVector) {
+		this.texCoords.forEach(s -> Vector2f.add(s, translationVector, s));
+	}
+
+	public void scaleTexture(Vector2f scaleVector) {
+		this.texCoords.forEach(s -> s.multiply(scaleVector));
 	}
 
 	public void rotate(float angle, float x, float y, float z) {

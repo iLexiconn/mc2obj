@@ -3,6 +3,7 @@ package net.ilexiconn.mc2obj.obj;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 public class ObjModel {
@@ -17,8 +18,20 @@ public class ObjModel {
 		this.shapes = new ArrayList<>();
 	}
 
-	public void translate(Vector3f vector) {
-		this.shapes.forEach(s -> s.translate(vector));
+	public void translate(Vector3f translationVector) {
+		this.shapes.forEach(s -> s.translate(translationVector));
+	}
+	
+	public void scale(Vector3f scaleVector) {
+		this.shapes.forEach(s -> s.scale(scaleVector));
+	}
+	
+	public void translateTexture(Vector2f translationVector) {
+		this.shapes.forEach(s -> s.translateTexture(translationVector));
+	}
+
+	public void scaleTexture(Vector2f scaleVector) {
+		this.shapes.forEach(s -> s.scaleTexture(scaleVector));
 	}
 
 	public List<String> toStringList() {

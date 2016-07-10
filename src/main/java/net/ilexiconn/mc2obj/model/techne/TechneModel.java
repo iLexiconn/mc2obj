@@ -1,7 +1,6 @@
 package net.ilexiconn.mc2obj.model.techne;
 
 import net.ilexiconn.mc2obj.model.IModel;
-import net.ilexiconn.mc2obj.model.IModelBox;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;

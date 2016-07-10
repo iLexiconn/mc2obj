@@ -1,15 +1,13 @@
 package net.ilexiconn.mc2obj.model;
 
+import org.lwjgl.util.vector.Vector3f;
+
 public interface IModelBox<MODEL extends IModel> {
 	MODEL getParentModel();
 
 	String getName();
 
-	float getOffsetX();
-
-	float getOffsetY();
-
-	float getOffsetZ();
+	Vector3f getOffset();
 
 	float getSizeX();
 

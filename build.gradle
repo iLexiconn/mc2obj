@@ -1,28 +1,51 @@
+//
+// mc2obj Gradle Build Script.
+//
+
+//
+// Apply Relevant Plugins
+//
 plugins {
+	id 'idea'
     id 'java'
-    id 'idea'
+	id 'application'
 }
 
+//
+// Java Settings
+//
+mainClassName = 'net.ilexiconn.mc2obj.Main'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+archivesBaseName = 'mc2obj'
+version = '0.0.1'
+
+
+//
+// Jar Compilation Configuration
+//
+jar {
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	manifest {
+        attributes("Implementation-Title": "mc2obj",
+                   "Main-Class": mainClassName,
+                   "Implementation-Version": version)
+    }
+}
+
+//
+// Repositories
+//
 repositories {
-    mavenCentral()
+	jcenter()
+	mavenCentral()
 }
 
+//
+// Build Dependencies
+//
 dependencies {
-    compile 'org.lwjgl.lwjgl:lwjgl_util:2.9.3'
-    compile 'commons-io:commons-io:2.4'
-    compile 'com.google.code.gson:gson:2.5'
-}
-
-task fatJar(type: Jar) {
-    baseName = project.name + '-all'
-    from {
-        configurations.compile.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
-    with jar
-    manifest {
-        attributes 'Implementation-Title': 'mc2obj'
-        attributes 'Main-Class': 'net.ilexiconn.mc2obj.Main'
-    }
+	compile 'org.lwjgl.lwjgl:lwjgl_util:2.9.3'
+	compile 'com.google.code.gson:gson:2.5'
+	compile 'commons-io:commons-io:2.4'
 }

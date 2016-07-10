@@ -1,6 +1,7 @@
 package net.ilexiconn.mc2obj.model.tabula;
 
 import net.ilexiconn.mc2obj.model.IModelBox;
+import org.lwjgl.util.vector.Vector3f;
 
 public class TabulaBox implements IModelBox<TabulaModel> {
 	public TabulaModel parent;
@@ -8,7 +9,7 @@ public class TabulaBox implements IModelBox<TabulaModel> {
 	public int[] dimensions = new int[3];
 
 	public float[] position = new float[3];
-	public float[] offset = new float[3];
+	public Vector3f offset = new Vector3f();
 	public float[] rotation = new float[3];
 
 	public int[] txOffset = new int[2];
@@ -25,18 +26,8 @@ public class TabulaBox implements IModelBox<TabulaModel> {
 	}
 
 	@Override
-	public float getOffsetX() {
-		return offset[0];
-	}
-
-	@Override
-	public float getOffsetY() {
-		return offset[1];
-	}
-
-	@Override
-	public float getOffsetZ() {
-		return offset[2];
+	public Vector3f getOffset() {
+		return this.offset;
 	}
 
 	@Override

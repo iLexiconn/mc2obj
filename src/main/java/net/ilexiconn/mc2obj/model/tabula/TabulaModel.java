@@ -10,18 +10,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class TabulaModel implements IModel {
+
 	public int textureWidth;
 	public int textureHeight;
 
+	public final String name;
+
 	public float[] scale = new float[]{1.0F, 1.0F, 1.0F};
 
-	public ArrayList<TabulaBox> cubes;
+	public List<TabulaBox> cubes;
 
 	public TabulaModel(File file) {
+		this.name = file.getName().split("\\.")[0];
 		try {
 			ZipFile zipFile = new ZipFile(file);
 			Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -48,8 +53,13 @@ public class TabulaModel implements IModel {
 	}
 
 	@Override
-	public IModelBox[] getBoxes() {
-		return cubes.toArray(new TabulaBox[cubes.size()]);
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public List<TabulaBox> getBoxes() {
+		return this.cubes;
 	}
 
 	@Override

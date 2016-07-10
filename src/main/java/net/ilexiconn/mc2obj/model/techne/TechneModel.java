@@ -26,11 +26,18 @@ public class TechneModel implements IModel {
 	public float scaleZ = 1.0F;
 	public int textureSizeX = 64;
 	public int textureSizeY = 32;
-	private String filename;
+	private final String filename;
+	private final String name;
 
 	public TechneModel(File file) {
 		this.filename = file.getName();
+		this.name = this.filename.split("\\.")[0];
 		this.loadTechneModel(file);
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
 	}
 
 	private void loadTechneModel(File file) {
@@ -143,8 +150,8 @@ public class TechneModel implements IModel {
 	}
 
 	@Override
-	public IModelBox[] getBoxes() {
-		return boxes.toArray(new TechneBox[boxes.size()]);
+	public List<TechneBox> getBoxes() {
+		return boxes;
 	}
 
 	@Override

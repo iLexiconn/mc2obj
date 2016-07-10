@@ -23,7 +23,7 @@ public class Face {
 		sb.append("f");
 		int i = 0;
 		while (i < this.vertices.size()) {
-			sb.append(" ").append(this.vertices.get(i).index).append("/").append(this.uvCoords.get(i).index);
+			sb.append(" ").append(this.vertices.get(i).getIndex()).append("/").append(this.uvCoords.get(i).index);
 			++i;
 		}
 		return sb.toString();

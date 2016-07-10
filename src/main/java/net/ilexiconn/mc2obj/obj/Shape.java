@@ -61,22 +61,22 @@ public class Shape {
 
 	public void translate(Vector3f translationVector) {
 		for (Vertex vertex : this.vertices) {
-			Vector3f.add(vertex.position, translationVector, vertex.position);
+			Vector3f.add(vertex, translationVector, vertex);
 		}
 	}
 
 	public void scale(Vector3f scaleVector) {
 		for (Vertex vertex : this.vertices) {
-			vertex.position.x *= scaleVector.x;
-			vertex.position.y *= scaleVector.y;
-			vertex.position.z *= scaleVector.z;
+			vertex.x *= scaleVector.x;
+			vertex.y *= scaleVector.y;
+			vertex.z *= scaleVector.z;
 		}
 	}
 
 	public void rotate(float angle, float x, float y, float z) {
 		Matrix3f rotationMatrix = Shape.rotationMatrix(angle, x, y, z);
 		for (Vertex vertex : this.vertices) {
-			Matrix3f.transform(rotationMatrix, vertex.position, vertex.position);
+			Matrix3f.transform(rotationMatrix, vertex, vertex);
 		}
 	}
 

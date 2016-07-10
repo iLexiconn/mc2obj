@@ -1,6 +1,7 @@
 package net.ilexiconn.mc2obj.model.techne;
 
 import net.ilexiconn.mc2obj.model.IModelBox;
+import org.lwjgl.util.vector.Vector3f;
 
 public class TechneBox implements IModelBox<TechneModel> {
 	public TechneModel parentModel;
@@ -16,9 +17,7 @@ public class TechneBox implements IModelBox<TechneModel> {
 	public float rotateAngleZ;
 	public boolean mirror;
 	public final String name;
-	public float offsetX;
-	public float offsetY;
-	public float offsetZ;
+	public Vector3f offset;
 	public float sizeX;
 	public float sizeY;
 	public float sizeZ;
@@ -48,9 +47,7 @@ public class TechneBox implements IModelBox<TechneModel> {
 	}
 
 	public void setOffset(float x, float y, float z) {
-		this.offsetX = x;
-		this.offsetY = y;
-		this.offsetZ = z;
+		this.offset = new Vector3f(x, y, z);
 	}
 
 	public void setDimensions(float x, float y, float z) {
@@ -76,18 +73,8 @@ public class TechneBox implements IModelBox<TechneModel> {
 	}
 
 	@Override
-	public float getOffsetX() {
-		return offsetX;
-	}
-
-	@Override
-	public float getOffsetY() {
-		return offsetY;
-	}
-
-	@Override
-	public float getOffsetZ() {
-		return offsetZ;
+	public Vector3f getOffset() {
+		return this.offset;
 	}
 
 	@Override

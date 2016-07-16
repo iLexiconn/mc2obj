@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface IModel {
 
-	String getName();
+    String getName();
 
-	List<? extends IModelBox> getBoxes();
+    List<? extends IModelBox> getBoxes();
 
-	float getScaleX();
+    float getScaleX();
 
-	float getScaleY();
+    float getScaleY();
 
-	float getScaleZ();
+    float getScaleZ();
 
 }

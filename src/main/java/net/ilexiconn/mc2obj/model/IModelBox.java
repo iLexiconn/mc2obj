@@ -1,41 +1,40 @@
 package net.ilexiconn.mc2obj.model;
 
+import org.lwjgl.util.vector.Vector3f;
+
 public interface IModelBox<MODEL extends IModel> {
-	MODEL getParentModel();
 
-	String getName();
+    MODEL getParentModel();
 
-	float getOffsetX();
+    String getName();
 
-	float getOffsetY();
+    Vector3f getOffset();
 
-	float getOffsetZ();
+    float getSizeX();
 
-	float getSizeX();
+    float getSizeY();
 
-	float getSizeY();
+    float getSizeZ();
 
-	float getSizeZ();
+    boolean isMirror();
 
-	boolean isMirror();
+    float getTextureOffsetX();
 
-	float getTextureOffsetX();
+    float getTextureOffsetY();
 
-	float getTextureOffsetY();
+    float getTextureWidth();
 
-	float getTextureWidth();
+    float getTextureHeight();
 
-	float getTextureHeight();
+    float getRotationAngleX();
 
-	float getRotationAngleX();
+    float getRotationAngleY();
 
-	float getRotationAngleY();
+    float getRotationAngleZ();
 
-	float getRotationAngleZ();
+    float getRotationPointX();
 
-	float getRotationPointX();
+    float getRotationPointY();
 
-	float getRotationPointY();
-
-	float getRotationPointZ();
+    float getRotationPointZ();
 }

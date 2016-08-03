@@ -1,11 +1,17 @@
 package net.ilexiconn.mc2obj.model;
 
+import java.util.List;
+
 public interface IModel {
-	IModelBox[] getBoxes();
 
-	float getScaleX();
+    String getName();
 
-	float getScaleY();
+    List<? extends IModelBox> getBoxes();
 
-	float getScaleZ();
+    float getScaleX();
+
+    float getScaleY();
+
+    float getScaleZ();
+
 }

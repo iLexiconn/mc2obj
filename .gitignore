@@ -1,5 +1,34 @@
+# Ignore Rundirs.
+run/
+
+# Ignore IDE Files.
+eclipse/
+.nb-gradle/
+.idea/
+.nb-gradle-properties
+.classpath
+.project
+.settings/
+
+# Ignore Gradle Stuff
+gradle.properties
 .gradle/
+
+# Ignore Git
+.git/
+
+# Ignore Build Files
 build/
+dist/
+out/
+logs/
+bin/
+libs/
+
+# Ignore Misc.
 *.iml
 *.ipr
 *.iws
+*.bak
+Schematic_to_Java*
+schematics/

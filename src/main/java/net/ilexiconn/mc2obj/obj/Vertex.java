@@ -2,33 +2,41 @@ package net.ilexiconn.mc2obj.obj;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import java.util.Locale;
+public class Vertex extends Vector3f {
 
-public class Vertex {
-	public Vector3f position;
-	public int index;
+    private int index;
 
-	public Vertex(float x, float y, float z) {
-		this(new Vector3f(x, y, z));
-	}
+    public Vertex(float x, float y, float z) {
+        super(x, y, z);
+    }
 
-	public Vertex(Vector3f position) {
-		this.position = position;
-	}
+    public Vertex(Vector3f src) {
+        super(src);
+    }
 
-	void register(ObjModel model) {
-		this.index = model.nextVertexIndex++;
-	}
+    public void multiply(float x, float y, float z) {
+        this.x *= x;
+        this.y *= y;
+        this.z *= z;
+    }
 
-	public String toString() {
-		return "v " + String.format(Locale.US, "%.6f", this.position.x) + " " + String.format(Locale.US, "%.6f", this.position.y) + " " + String.format(Locale.US, "%.6f", this.position.z);
-	}
+    public void multiply(Vector3f vector) {
+        this.x *= vector.x;
+        this.y *= vector.y;
+        this.z *= vector.z;
+    }
 
-	public boolean equals(Object obj) {
-		if (obj instanceof Vertex) {
-			Vertex vertex = (Vertex) obj;
-			return vertex.position.x == this.position.x && vertex.position.y == this.position.y && vertex.position.z == this.position.z;
-		}
-		return false;
-	}
+    void register(ObjModel model) {
+        this.index = model.nextVertexIndex++;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("v %1$.6f %2$.6f %3$.6f", this.x, this.y, this.z);
+    }
+
 }

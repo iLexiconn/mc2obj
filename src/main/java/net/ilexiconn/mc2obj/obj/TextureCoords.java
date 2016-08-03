@@ -2,33 +2,34 @@ package net.ilexiconn.mc2obj.obj;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import java.util.Locale;
+public class TextureCoords extends Vector2f {
 
-public class TextureCoords {
-	public Vector2f uvCoords;
-	public int index;
+    public int index;
 
-	public TextureCoords(float u, float v) {
-		this(new Vector2f(u, v));
-	}
+    public TextureCoords(float u, float v) {
+        super(u, v);
+    }
 
-	public TextureCoords(Vector2f uvCoords) {
-		this.uvCoords = uvCoords;
-	}
+    public TextureCoords(Vector2f uvCoords) {
+        super(uvCoords);
+    }
 
-	void register(ObjModel model) {
-		this.index = model.nextTexIndex++;
-	}
+    public void multiply(float u, float v) {
+        this.x *= u;
+        this.y *= v;
+    }
 
-	public String toString() {
-		return "vt " + String.format(Locale.US, "%.6f", this.uvCoords.x) + " " + String.format(Locale.US, "%.6f", this.uvCoords.y);
-	}
+    public void multiply(Vector2f vector) {
+        this.x *= vector.x;
+        this.y *= vector.y;
+    }
 
-	public boolean equals(Object obj) {
-		if (obj instanceof TextureCoords) {
-			TextureCoords uv = (TextureCoords) obj;
-			return uv.uvCoords.x == this.uvCoords.x && uv.uvCoords.y == this.uvCoords.y;
-		}
-		return false;
-	}
+    void register(ObjModel model) {
+        this.index = model.nextTexIndex++;
+    }
+
+    public String toString() {
+        return String.format("vt %.6f %.6f", this.x, this.y);
+    }
+
 }
